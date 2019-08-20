@@ -7,7 +7,7 @@
             default-active="1-4-1"
             class="el-menu-vertical-demo"
             :collapse="false"
-            style="width:201px;min-height: 100%;"
+            
         >
             <el-submenu index="1">
                 <template slot="title">

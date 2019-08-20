@@ -1,17 +1,31 @@
 <template>
     <div id="app">
-      <myheader/>
-      <section style="display:flex;flex:1;">
-          <myleft/>
-        <article style="background-color:yellow;"></article>
-      </section>
+        <myheader />
+        <section style="display:flex;flex:1;">
+            <div style="width:201px;background-color:#333;min-height: 100%;" >
+                <myleft />
+            </div>
+            <article style="flex:1;padding:10px">
+                <el-breadcrumb separator-class="el-icon-arrow-right" style="margin:10px 0">
+                    <el-breadcrumb-item>首页</el-breadcrumb-item>
+                    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+                    <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+                </el-breadcrumb>
+                <router-view></router-view>
+            </article>
+        </section>
     </div>
 </template>
 
 <script>
-import {myheader,myleft} from './components'
+import { myheader, myleft } from './components'
 export default {
     name: 'app',
+    data() {
+        return {
+            
+        }
+    },
     components: {
         myheader,
         myleft
