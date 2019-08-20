@@ -1,18 +1,20 @@
 <template>
     <div id="app">
-      <myheader />
-      <section>
-        <nav></nav>
+      <myheader/>
+      <section style="display:flex;flex:1;">
+          <myleft/>
+        <article style="background-color:yellow;"></article>
       </section>
     </div>
 </template>
 
 <script>
-import myheader from './components/header'
+import {myheader,myleft} from './components'
 export default {
     name: 'app',
     components: {
-        myheader
+        myheader,
+        myleft
     }
 }
 </script>
@@ -29,5 +31,8 @@ export default {
     text-align: center;
     /* color: #2c3e50; */
     /* margin-top: 60px; */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 </style>

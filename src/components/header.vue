@@ -7,7 +7,6 @@
             :default-active="activeIndex2"
             class="el-menu-demo"
             mode="horizontal"
-            @select="handleSelect"
             background-color="#333"
             text-color="#fff"
             active-text-color="#ffd04b"
@@ -31,7 +30,7 @@
 
 <script>
 export default {
-    name: 'header',
+    name: 'Header',
     data() {
         return {
             activeIndex: '1',
@@ -39,9 +38,7 @@ export default {
         }
     },
     methods: {
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath)
-        }
+        
     }
 }
 </script>
