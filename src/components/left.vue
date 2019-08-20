@@ -7,16 +7,16 @@
             default-active="1-4-1"
             class="el-menu-vertical-demo"
             :collapse="false"
-            
+            router
         >
             <el-submenu index="1">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span slot="title">导航一</span>
+                    <span slot="title">用户管理</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
+                    <el-menu-item index="/user" >用户列表</el-menu-item>
+                    <el-menu-item index="/">选项2</el-menu-item>
                     <el-menu-item index="1-3">选项3</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
@@ -24,7 +24,7 @@
                 <i class="el-icon-menu"></i>
                 <span slot="title">导航二</span>
             </el-menu-item>
-            <el-menu-item index="3" disabled>
+            <el-menu-item index="3">
                 <i class="el-icon-document"></i>
                 <span slot="title">导航三</span>
             </el-menu-item>

@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     routes:[
         {
+            path:"/",
+            component:()=>import('@/view/home')
+        },
+        {
             path:"/user",
             component:()=>import('@/view/user/userlist')
         }
