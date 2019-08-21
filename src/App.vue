@@ -2,10 +2,14 @@
     <div id="app">
         <myheader />
         <section style="display:flex;flex:1;">
-            <div style="width:201px;background-color:#333;text-align:center;" >
-                <myleft/>
+            <div style="background-color:#333;text-align:center;">
+                <myleft @collapse="leftcollapse" />
             </div>
-            <article style="flex:1;padding:10px">
+            <article
+                :style="{width:'calc(100vw - '+leftW+'px)'}"
+                style="padding:10px;box-sizing: border-box;"
+                
+            >
                 <el-breadcrumb separator-class="el-icon-arrow-right" style="margin:10px 0">
                     <el-breadcrumb-item>首页</el-breadcrumb-item>
                     <el-breadcrumb-item>用户管理</el-breadcrumb-item>
@@ -19,16 +23,22 @@
 
 <script>
 import { myheader, myleft } from './components'
+import { log } from 'util';
 export default {
     name: 'app',
     data() {
         return {
-            
+            leftW: 201
         }
     },
     components: {
         myheader,
         myleft
+    },
+    methods: {
+        leftcollapse(val) {
+            this.leftW = val ? 65 : 201
+        }
     }
 }
 </script>
@@ -37,14 +47,12 @@ export default {
 * {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* text-align: center; */
-    /* color: #2c3e50; */
-    /* margin-top: 60px; */
     display: flex;
     flex-direction: column;
     height: 100vh;

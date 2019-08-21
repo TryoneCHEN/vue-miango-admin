@@ -86,7 +86,7 @@
             <el-col :span="8">
                 <div class="grid-content bg-purple">
                     <el-card class="box-card" style="height: 350px;">
-                        <el-calendar v-model="value"></el-calendar>
+                       <iframe allowtransparency="true" frameborder="0" width="140" height="278" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=1&d=3&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=140&h=278&align=center"></iframe>
                     </el-card>
                 </div>
             </el-col>

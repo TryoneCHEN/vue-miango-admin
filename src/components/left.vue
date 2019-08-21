@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div style="position: relative;">
         <el-menu
+            :default-active="activeIndex"
             background-color="#333"
             text-color="#fff"
             active-text-color="#ffd04b"
-            default-active="1-4-1"
             class="el-menu-vertical-demo"
-            :collapse="false"
+            :collapse="iscollapse"
             router
         >
             <el-submenu index="1">
@@ -15,8 +15,8 @@
                     <span slot="title">用户管理</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="/user" >用户列表</el-menu-item>
-                    <el-menu-item index="/">选项2</el-menu-item>
+                    <el-menu-item index="1-1" route="/user">用户列表</el-menu-item>
+                    <el-menu-item index="1-2" route="/">选项2</el-menu-item>
                     <el-menu-item index="1-3">选项3</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
@@ -33,24 +33,45 @@
                 <span slot="title">导航四</span>
             </el-menu-item>
         </el-menu>
+        <i
+            class="allow"
+            :class="!iscollapse?'el-icon-d-arrow-left':'el-icon-d-arrow-right'"
+            @click="iscollapse=!iscollapse"
+        ></i>
     </div>
 </template>
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-}
-</style>
+
 
 <script>
 export default {
     data() {
         return {
-            isCollapse: true
+            iscollapse: false,
+            activeIndex: '2'
         }
     },
-    methods: {
-        
-    }
+    watch: {
+        iscollapse(newval,oldval){
+            this.$emit("collapse",newval)
+        }
+    },
+   
 }
 </script>
+
+<style scoped>
+.allow {
+    position: absolute;
+    bottom: -260px;
+    left:calc(50%-25px);
+    width: 20px;
+    height: 20px;
+    /* background: red; */
+    font-size: 20px;
+    color: antiquewhite;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+}
+</style>
