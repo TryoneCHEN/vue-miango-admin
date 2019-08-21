@@ -1,6 +1,97 @@
 <template>
     <div>
-        <el-row>
+        <el-row :gutter="20">
+            <el-col :span="8">
+                <div class="grid-content bg-purple">
+                    <el-card class="box-card" style="height: 350px;">
+                        <div slot="header" class="clearfix">
+                            <span>快捷方式</span>
+                        </div>
+                        <el-row :gutter="20" class="anniu">
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple">
+                                    <el-button type="primary" round>
+                                        <i class="el-icon-edit"></i>新增会员
+                                    </el-button>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple-light">
+                                    <el-button type="success" round>
+                                        <i class="el-icon-delete-solid"></i>用户管理
+                                    </el-button>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple">
+                                    <el-button type="warning" round>
+                                        <i class="el-icon-platform-eleme"></i>帖子管理
+                                    </el-button>
+                                </div>
+                            </el-col>
+                        </el-row>
+                        <el-row :gutter="20" class="anniu">
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple">
+                                    <el-button type="primary" round>
+                                        <i class="el-icon-edit"></i>投诉管理
+                                    </el-button>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple-light">
+                                    <el-button type="success" round>
+                                        <i class="el-icon-delete-solid"></i>主要按钮
+                                    </el-button>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div class="grid-content bg-purple">
+                                    <el-button type="warning" round>
+                                        <i class="el-icon-platform-eleme"></i>系统设置
+                                    </el-button>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </el-card>
+                </div>
+            </el-col>
+            <el-col :span="8">
+                <div class="grid-content bg-purple-light">
+                    <el-card class="box-card" style="height: 350px;">
+                        <div slot="header" class="clearfix">
+                            <span>数据统计</span>
+                        </div>
+                        <el-row :gutter="50" class="sjtj">
+                            <el-col class="item" :span="12">
+                                新增用户/
+                                <span>15</span>人
+                            </el-col>
+                            <el-col class="item" :span="12">
+                                新增帖子/
+                                <span>20</span>条
+                            </el-col>
+                            <el-col class="item" :span="12">
+                                新增充值/
+                                <span>25</span>元
+                            </el-col>
+                            <el-col class="item" :span="12">
+                                新增投诉/
+                                <span>1</span>条
+                            </el-col>
+                        </el-row>
+                    </el-card>
+                </div>
+            </el-col>
+            <el-col :span="8">
+                <div class="grid-content bg-purple">
+                    <el-card class="box-card" style="height: 350px;">
+                        <el-calendar v-model="value"></el-calendar>
+                    </el-card>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
             <el-col :span="8">
                 <div class="grid-content bg-purple">
                     <el-card class="box-card">
@@ -38,6 +129,11 @@
 <script>
 import { chartscolumn, chartsline, chartspie } from '@/components'
 export default {
+    data() {
+      return {
+        value: new Date()
+      }
+    },
     components: {
         chartscolumn,
         chartsline,
@@ -47,4 +143,19 @@ export default {
 </script>
 
 <style>
+.el-calendar-table .el-calendar-day{
+    height: 30px;
+    
+}
+.anniu {
+    margin-top: 30px;
+}
+.sjtj .item {
+    padding: 20px;
+    font-size: 14px;
+}
+.sjtj .item span {
+    color: red;
+    font-size: 32px;
+}
 </style>
