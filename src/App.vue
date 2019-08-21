@@ -2,7 +2,7 @@
     <div id="app">
         <myheader />
         <section style="display:flex;flex:1;">
-            <div style="width:201px;background-color:#333;min-height: 100%;" >
+            <div style="width:201px;background-color:#333;" >
                 <myleft />
             </div>
             <article style="flex:1;padding:10px">

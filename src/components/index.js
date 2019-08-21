@@ -1,2 +1,5 @@
 export var myheader = () => import('./header.vue')
 export var myleft = () => import('./left.vue')
+export var chartscolumn = () => import('./echarts/column.vue')
+export var chartsline = () => import('./echarts/line.vue')
+export var chartspie = () => import('./echarts/pie.vue')
