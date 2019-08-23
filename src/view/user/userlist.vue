@@ -1,19 +1,55 @@
 <template>
     <div>
-        <el-table :data="tableData" style="width: 100%" border>
-            <el-table-column prop="date" label="日期" width="180"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+        <div style="margin:10px 0">
+            <el-button type="primary" plain @click="dialogVisible = true">添加用户</el-button>
+        </div>
+        <el-dialog title="添加用户" :visible.sync="dialogVisible" width="30%">
+            <el-form label-width="80px">
+                <el-form-item label="日期">
+                    <el-input v-model="form.date"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item  label="性别">
+                    <el-radio-group v-model="form.sex">
+                        <el-radio label="男"></el-radio>
+                        <el-radio label="女"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="地址">
+                    <el-input v-model="form.address"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
+        <el-table :data="tableData" style="width: 100%" border v-loading="loading">
+            <el-table-column align="center" prop="date" label="日期" width="180"></el-table-column>
+            <el-table-column align="center" prop="title" label="姓名" width="180">
+                <template slot-scope="scope">
+                    <el-popover trigger="hover" placement="top">
+                        <p>姓名: {{ scope.row.name }}</p>
+                        <p>住址: {{ scope.row.address }}</p>
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                        </div>
+                    </el-popover>
+                </template>
+            </el-table-column>
             <!-- 法一:加一个自定义的 :formatter="fmtGender"-->
-            <el-table-column prop="sex" :formatter="fmtGender" label="性别"></el-table-column>
+            <el-table-column align="center" prop="sex" :formatter="fmtGender" label="性别"></el-table-column>
             <!-- 法二自定义模板 -->
             <!-- <el-table-column prop="sex" label="性别">
                 <template slot-scope="scope">
                     {{scope.row.sex==0?'男':'女'}}
                 </template>
-            </el-table-column> -->
+            </el-table-column>-->
 
-            <el-table-column prop="address" label="地址"></el-table-column>
-            <el-table-column label="操作">
+            <el-table-column align="center" prop="address" label="地址"></el-table-column>
+            <el-table-column align="center" label="操作">
                 <template slot-scope="scope">
                     <el-button size="mini">编辑</el-button>
                     <el-button
@@ -31,52 +67,24 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
-            tableData: [
-                {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    sex: 2,
-                    address: '上海市普陀区金沙江路 1518 弄'
-                },
-                {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    sex: 1,
-                    address: '上海市普陀区金沙江路 1517 弄'
-                },
-                {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    sex: 1,
-                    address: '上海市普陀区金沙江路 1519 弄'
-                },
-                {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    sex: 0,
-                    address: '上海市普陀区金沙江路 1516 弄'
-                },
-                {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    sex: 0,
-                    address: '上海市普陀区金沙江路 1517 弄'
-                },
-                {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    sex: 0,
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }
-            ]
+            form:{
+                date:"",
+                name:"",
+                sex:1,
+                address:""
+            },
+            tableData: [],
+            loading: false,
+            dialogVisible: false
         }
     },
     methods: {
-        fmtGender(row){
-            return ["女","男"][row.sex]||'未知';
+        fmtGender(row) {
+            return ['女', '男'][row.sex] || '未知'
         },
         deleteRow(index, rows) {
             this.$confirm(`此操作将永久删除这一行?是否继续?`, '提示', {
@@ -85,19 +93,25 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    })
+                    this.$success('删除成功!')
                     rows.splice(index, 1)
                 })
                 .catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    })
+                    this.$fail('已取消删除')
                 })
+        },
+        getUserList() {
+            this.loading = true
+            setTimeout(() => {
+                axios.get('/mock/news').then(res => {
+                    this.tableData = res.data
+                    this.loading = false
+                })
+            }, 2000)
         }
+    },
+    created() {
+        this.getUserList()
     }
 }
 </script>

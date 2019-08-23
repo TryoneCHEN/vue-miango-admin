@@ -23,7 +23,6 @@
 
 <script>
 import { myheader, myleft } from './components'
-import { log } from 'util';
 export default {
     name: 'app',
     data() {
