@@ -51,6 +51,7 @@
             <el-table-column align="center" prop="address" label="地址"></el-table-column>
             <el-table-column align="center" label="操作">
                 <template slot-scope="scope">
+                    <el-button size="mini">详情</el-button>
                     <el-button size="mini">编辑</el-button>
                     <el-button
                         @click.native.prevent="deleteRow(scope.$index, tableData)"
